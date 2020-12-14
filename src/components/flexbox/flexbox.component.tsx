@@ -118,6 +118,7 @@ export const TouchableFlexBox = props => {
         flex1,
         wrap,
         w100,
+        h100,
         ...other
     } = props;
     //TODO figure out way to pass in element

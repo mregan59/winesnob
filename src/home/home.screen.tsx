@@ -10,6 +10,7 @@ import { MainLayout } from '../layout';
 import { AppRoute } from '../navigation/app-routes';
 import { SettingsIcon, PersonIcon } from '../assets/icons';
 import { FlexBox, Spacer, BottomButton } from '../components';
+import { Option } from './option';
 
 export const Home = props => {
 
@@ -20,39 +21,40 @@ export const Home = props => {
     const { eva } = props;
     const themedStyle = eva.style;
 
-    const navigateToWords = () => {
-        props.navigation.navigate(AppRoute.WORDS);
-    };
 
 
+    const wines = [
+        { type: 'Red', key: 'red', image: require('../assets/red.png'), },
+        { type: 'White', key: 'white', image: require('../assets/white.png'), },
+        { type: 'Rose', key: 'rose', image: require('../assets/rose.png'), },
 
-    const renderRightControl = () => {
-        return (
-            <TopNavigationAction
-                icon={PersonIcon}
-            />
-        );
-    };
+    ]
+
+
+    const navigateToWords = (wine: any) => {
+        props.navigation.navigate(AppRoute.WORDS, { wine: wine });
+    }
+
+    const renderWines = wines.map(wine =>
+        <Option key={wine.type} wine={wine} onPress={() => navigateToWords(wine)}></Option>
+    )
 
 
     return (
         <View style={themedStyle.container}>
             <MainLayout
                 safeArea={true}
-                padding={null}
                 tabPadding
-                showTitle={false}
-                rightControl={renderRightControl}
+                showTitle={true}
+
                 {...props}
             >
                 <Layout level="1" style={themedStyle.container}>
-                    <Text>Home</Text>
+                    <FlexBox row aligncenter justifybetween>
+                        {renderWines}
+                    </FlexBox>
                 </Layout>
             </MainLayout>
-            <BottomButton
-                style={themedStyle.button}
-                onPress={navigateToWords}
-            >Go to Words</BottomButton>
         </View>
     );
 };

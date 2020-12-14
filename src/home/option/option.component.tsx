@@ -1,10 +1,22 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { TouchableWithoutFeedback, Image } from 'react-native';
+import { Layout, Text, } from '@ui-kitten/components';
+import { FlexBox } from '../../components';
 
-export const Option = () => {
+export const Option = ({ eva, wine, onPress, }) => {
+
+
+
+
+    const themedStyle = eva.style;
     return (
-        <View>
-            <Text>option 1</Text>
-        </View>
+        <TouchableWithoutFeedback onPress={onPress}>
+            <Layout style={themedStyle.card} level="1">
+                <FlexBox w100 justifycenter aligncenter >
+                    <Image source={wine.image} />
+                    <Text>{wine.type}</Text>
+                </FlexBox>
+            </Layout>
+        </TouchableWithoutFeedback>
     )
 }

@@ -77,3 +77,7 @@ export const SettingsIcon = (style) => (
 export const CloseIcon = (style) => (
     <Icon {...style} name="close-outline" />
 );
+
+export const RefreshIcon = (style) => (
+    <Icon {...style} name="refresh-outline" />
+);
